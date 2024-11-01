@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .user-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-buttons button {
+            margin: 5px 0;
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #64ee48;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            text-align: left;
+        }
+
+        h1 {
+            padding-top: 20px;
+            color: #64ee48;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-buttons">
+        <button onclick="window.location.href='/changing_pass'">Сhanging the password</button>
+        <button onclick="window.location.href='/new_user'">New user</button>
+        <button onclick="window.location.href='/all_user'">All users</button>
+        <button onclick="window.location.href='/exit'">Exit</button>
+        {{if .}}
+        <button onclick="window.location.href='/profile'">Profile</button>
+    {{else}}
+        <button onclick="window.location.href='/index'">Login</button>
+    {{end}}
+    </div>
+
+    <h1>
+        About:
+    </h1>
+    <h2>
+        Мизгеев Денис ИДБ-21-03<br>
+        Задание: Наличие латинских букв, символов кириллицы и цифр
+    </h2>
+</body>
+</html>

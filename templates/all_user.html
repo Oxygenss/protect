@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All users</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .user-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-buttons button {
+            margin: 5px 0;
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #64ee48;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            text-align: left;
+        }
+
+        h1 {
+            padding-top: 20px;
+            color: #64ee48;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-buttons">
+        <button onclick="window.location.href='/changing_pass'">Сhanging the password</button>
+        <button onclick="window.location.href='/new_user'">New user</button>
+        <button onclick="window.location.href='/all_user'">All users</button>
+        <button onclick="window.location.href='/exit'">Exit</button>
+        <button class="about-btn" onclick="window.location.href='/about'">About</button>
+    </div>
+    <table border="3" cellpadding="5" cellspacing="0" style="margin: 0 auto; background-color: #f2f2f2; border-collapse: collapse; width: 50%;">
+        <tr>
+            <th>Login</th>
+            <th>IsBlocked</th>
+            <th>PasswordRestricted</th>
+        </tr>
+        {{range .Users}}
+        <tr>								
+            <td style="overflow: hidden;  word-wrap: break-word;">{{.Login}}</td>		
+            <td style="overflow: hidden;  word-wrap: break-word;">
+                <form action="/f" method="post" style="background-color: #f2f2f2;">
+                    <input name="login" value="{{.Login}}" style="visibility: hidden; display: none;">
+                    <input name="action" value="0" style="visibility: hidden; display: none;">
+                    <button>{{.IsBlocked}}</button>
+                </form>
+            </td>
+            <td style="overflow: hidden;  word-wrap: break-word;">
+                <form action="/f" method="post" style="background-color: #f2f2f2;">
+                    <input name="login" value="{{.Login}}" style="visibility: hidden; display: none;">
+                    <input name="action" value="1" style="visibility: hidden; display: none;">
+                    <button>{{.PasswordRestricted}}</button>
+                </form>
+            </td>
+        </tr>
+        {{end}}
+    </table>
+
+</body>
+</html>
